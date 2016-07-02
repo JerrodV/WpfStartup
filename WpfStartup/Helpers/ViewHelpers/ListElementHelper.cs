@@ -40,7 +40,7 @@ namespace WpfStartup.Helpers.ViewHelpers
 	   /// <param name="lb">The listbox in which to locate the control to select</param>
 	   /// <param name="value">The text to locate within the ListBox.Items collection</param>
 	   /// <returns>Int32 position of selected item in the array</returns>
-	   public static Int32 SetSelectedText(ListBox lb, string value)
+	   public static int SetSelectedText(ListBox lb, string value)
         {
             for(int i = 0; i < lb.Items.Count;i++)
             {

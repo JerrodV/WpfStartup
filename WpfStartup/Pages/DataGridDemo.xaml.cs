@@ -117,7 +117,7 @@ namespace WpfStartup.Pages
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			//And a one liner to save the current person to the database.
-			Helpers.Database_old.GetCommand("Person_Set", currentPerson.GetParameters());
+			Helpers.Database_old.GetCommand("Person_Set", currentPerson.Parameters);
 		}
 	}
 }

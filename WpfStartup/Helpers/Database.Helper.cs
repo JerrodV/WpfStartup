@@ -163,7 +163,7 @@ namespace WpfStartup.Helpers
 		/// <param name="command">The stored procedure name</param>
 		/// <param name="ID">The ID of the record to get</param>
 		/// <returns></returns>
-		public static SqlCommand GetCommand(string command, Int32 ID, string parameterName = "")
+		public static SqlCommand GetCommand(string command, int ID, string parameterName = "")
 		{
 			SqlCommand cmd = new SqlCommand(command, DefaultConnection);
 			cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -261,4 +261,9 @@ namespace WpfStartup.Helpers
 			return retval;
 		}
 	}
+
+    public class DatabaseObject
+    {
+        public string ConnectionString { get; set; }                
+    }
 }

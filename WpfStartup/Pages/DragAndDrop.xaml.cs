@@ -21,7 +21,7 @@ namespace WpfStartup.Pages
     {
         //Just a collection of stuff to play with. It does not have to be a key value pair. In fact, it can be any object.
         //The DisplayMemberPath will determine the field that is used when displaying a value is needed.
-        private List<KeyValuePair<Int32, string>> Months;
+        private List<KeyValuePair<int, string>> Months;
 
         public DragAndDrop()
         {
@@ -30,20 +30,20 @@ namespace WpfStartup.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {           
-            Months = new List<KeyValuePair<Int32, string>>() 
+            Months = new List<KeyValuePair<int, string>>() 
             { 
-                new KeyValuePair<Int32, string>(1,"January"),
-                new KeyValuePair<Int32, string>(2,"February"),
-                new KeyValuePair<Int32, string>(3,"March"),
-                new KeyValuePair<Int32, string>(4,"April"),
-                new KeyValuePair<Int32, string>(5,"May"),
-                new KeyValuePair<Int32, string>(6,"June"),
-                new KeyValuePair<Int32, string>(7,"July"),
-                new KeyValuePair<Int32, string>(8,"August"),
-                new KeyValuePair<Int32, string>(9,"September"),
-                new KeyValuePair<Int32, string>(10,"October"),
-                new KeyValuePair<Int32, string>(11,"November"),
-                new KeyValuePair<Int32, string>(12,"December")
+                new KeyValuePair<int, string>(1,"January"),
+                new KeyValuePair<int, string>(2,"February"),
+                new KeyValuePair<int, string>(3,"March"),
+                new KeyValuePair<int, string>(4,"April"),
+                new KeyValuePair<int, string>(5,"May"),
+                new KeyValuePair<int, string>(6,"June"),
+                new KeyValuePair<int, string>(7,"July"),
+                new KeyValuePair<int, string>(8,"August"),
+                new KeyValuePair<int, string>(9,"September"),
+                new KeyValuePair<int, string>(10,"October"),
+                new KeyValuePair<int, string>(11,"November"),
+                new KeyValuePair<int, string>(12,"December")
             };
 
             //For the first two, I set the collection to the moth, but change the display member.
@@ -69,8 +69,8 @@ namespace WpfStartup.Pages
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 ListBox lb = sender as ListBox;
-                List<KeyValuePair<Int32, string>> obj =
-                    lb.SelectedItems.OfType<KeyValuePair<Int32, string>>().ToList();
+                List<KeyValuePair<int, string>> obj =
+                    lb.SelectedItems.OfType<KeyValuePair<int, string>>().ToList();
                 DataObject theDO = new DataObject();
                 theDO.SetData("theFormat", obj);
                 if (obj != null)
@@ -93,12 +93,12 @@ namespace WpfStartup.Pages
             if (e.Data.GetDataPresent("theFormat"))
             {
                 //It was, so get the data by the format, parse it, and poof, we have data.
-                List<KeyValuePair<Int32, string>> obj = e.Data.GetData("theFormat") as List<KeyValuePair<Int32, string>>;
+                List<KeyValuePair<int, string>> obj = e.Data.GetData("theFormat") as List<KeyValuePair<int, string>>;
                 
                 //Create a pointer to listbox that the drop event occured on
                 ListBox lb = sender as ListBox;
                 //Add each of the items in the drag collection to the list.
-                foreach(KeyValuePair<Int32, string> kvp in obj)
+                foreach(KeyValuePair<int, string> kvp in obj)
                 {
                     lb.Items.Add(kvp);
                 }

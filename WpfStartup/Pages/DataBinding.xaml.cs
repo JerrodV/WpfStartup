@@ -23,8 +23,9 @@ namespace WpfStartup.Pages
 		public DataBinding()
 		{
 			InitializeComponent();
-			//Example load from Database Helper
-			person = new Person(Database_old.GetCommand("GetPeople", null, true));//True for maintain connection because our Person class will use a reader on it and handle the close.
+            //Example load from Database Helper
+            //person = new Person(Database_old.GetCommand("GetPeople", null, true));//True for maintain connection because our Person class will use a reader on it and handle the close.
+            person = new Person(1);
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -65,10 +66,10 @@ namespace WpfStartup.Pages
 		{
 			btnViewO.IsEnabled = false;
 			//This would normally not be needed. These assignments are just setting textboxes so we can see the binding works. 
-			txtVOFN.Text = person.FirstName;
-			txtVOLN.Text = person.LastName;
-			txtVOPN.Text = person.PhoneNumber;
-			txtVOID.Text = person.ID.ToString();
+			txtVOFN.Text = person.pFirstName;
+			txtVOLN.Text = person.pLastName;
+			txtVOPN.Text = person.pPhoneNumber;
+			txtVOID.Text = person.pID.ToString();
 			//
 
 			//The fields are all self validating, however, I have chosen to not force the user to enter a correct value to continue.
@@ -77,7 +78,7 @@ namespace WpfStartup.Pages
 			//Otherwise, similare code might go it the form closing or page validating event, and the close prevented if not valid.
 			if(Validate())
 			{
-				Helpers.Database_old.GetCommand("PersonSet", person.GetParameters(), false).ExecuteNonQuery();
+				Helpers.Database_old.GetCommand("PersonSet", person.Parameters, false).ExecuteNonQuery();
 				Helpers.MainWindow.ShowNotification("Person Saved: " + System.DateTime.Now.TimeOfDay.ToString());
 			}
 			else

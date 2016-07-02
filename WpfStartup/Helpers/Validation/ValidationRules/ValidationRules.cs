@@ -68,7 +68,7 @@ namespace WpfStartup.Helpers.Validation.ValidationRules
 			}
 		}
 
-		public static ValidationRule GetRule(Int32 index)
+		public static ValidationRule GetRule(int index)
 		{
 			switch (index)
 			{
@@ -149,7 +149,7 @@ namespace WpfStartup.Helpers.Validation.ValidationRules
 	{
 		public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
 		{
-			Int16 testVal = new Int32();
+			Int16 testVal = new int();
 			if (Int16.TryParse(value.ToString(), out testVal))
 			{
 				return new ValidationResult(true, null);
@@ -165,8 +165,8 @@ namespace WpfStartup.Helpers.Validation.ValidationRules
 	{
 		public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
 		{
-			Int32 testVal = new Int32();
-			if (Int32.TryParse(value.ToString(), out testVal))
+            int testVal = new int();
+			if (int.TryParse(value.ToString(), out testVal))
 			{
 				return new ValidationResult(true, null);
 			}
