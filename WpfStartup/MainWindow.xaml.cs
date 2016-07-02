@@ -186,8 +186,8 @@ namespace WpfStartup
                 _p = Person.GetByID(1);
                 */
 
-
-                db.GetData(db.Request("GetPeople")).Convert<People>();
+                //NOt tested
+                //db.GetData(db.Request("GetPeople")).Convert<People>();
             }
 
 
