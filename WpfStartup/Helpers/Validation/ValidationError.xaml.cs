@@ -1,13 +1,12 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace WpfStartup.Helpers.Validation
 {
-	/// <summary>
-	/// Interaction logic for ValidationError.xaml
-	/// </summary>
-	public partial class ValidationError : Page
+    /// <summary>
+    /// Interaction logic for ValidationError.xaml
+    /// </summary>
+    public partial class ValidationError : Page
 	{
 		private string m;
 

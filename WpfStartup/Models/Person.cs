@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data.SqlClient;
-using WpfStartup.Helpers;
 
 namespace WpfStartup.Models
 {
@@ -28,23 +26,35 @@ namespace WpfStartup.Models
               
         public Person(int? id = null)
         {
+            ConnectionString = Properties.Settings.Default.Base_ConnectionString;
+
             if (id.HasValue)
             {
+
                 using (var db = new Database(ConnectionString, true))
                 {
-                    Person p = db.RequestObject<Person>("GetPerson");
-                    pID = p.pID;
-                    pFirstName = p.pFirstName;
-                    pLastName = p.pLastName;
-                    pPhoneNumber = p.pPhoneNumber;                    
+                    db.Parameters.AddWithValue("@pID", id.Value);
+                    UpdateSelf(db.RequestObject<Person>("Person_GetByID"));                    
                 }
             }
+        }
+
+        private void UpdateSelf(Person p)
+        {
+            pID = p.pID;
+            pFirstName = p.pFirstName;
+            pLastName = p.pLastName;
+            pPhoneNumber = p.pPhoneNumber;
+            pDOB = p.pDOB;
+            pActive = p.pActive;
         }
         
 		public int? pID;//<--Not Bindable(No Get/Set)
 		public string pFirstName { get; set; }
 		public string pLastName { get; set; }
 		public string pPhoneNumber { get; set; }
+        public DateTime pDOB { get; set; }
+        public bool pActive { get; set; }
 
 		public List<SqlParameter> Parameters
 		{
@@ -66,19 +76,18 @@ namespace WpfStartup.Models
 
         public void UpdateDatabase()
         {
-            using (Database db = new Database(ConnectionString, true))
-            {
-                db.Request("Person_Set", Parameters);
-            }
+            UpdateSelf(Set(this));
+            
         }
 
-        public static void Set(Person person)
+        public static Person Set(Person person)
         {
+            Person retVal = null;
             using (Database db = new Database(new Person().ConnectionString, true))
             {
-                db.Request("Person_Set", person.Parameters);
+                retVal = db.RequestObject<Person>("Person_Set", person.Parameters);
             }
-
+            return retVal;
         }
     }
 

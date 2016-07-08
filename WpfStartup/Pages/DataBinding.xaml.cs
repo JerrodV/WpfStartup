@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using WpfStartup.Helpers;
 using WpfStartup.Helpers.Validation.ValidationRules;
 using WpfStartup.Models;
 
@@ -78,7 +76,11 @@ namespace WpfStartup.Pages
 			//Otherwise, similare code might go it the form closing or page validating event, and the close prevented if not valid.
 			if(Validate())
 			{
-				Helpers.Database_old.GetCommand("PersonSet", person.Parameters, false).ExecuteNonQuery();
+                //Old Way
+                //Helpers.Database_old.GetCommand("PersonSet", person.Parameters, false).ExecuteNonQuery();
+
+                //Awesome way
+                Person.Set(person);
 				Helpers.MainWindow.ShowNotification("Person Saved: " + System.DateTime.Now.TimeOfDay.ToString());
 			}
 			else

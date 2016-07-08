@@ -1,26 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfStartup.Models;
 
 namespace WpfStartup.Pages
 {
-	/// <summary>
-	/// Interaction logic for DataGridDemo.xaml
-	/// </summary>
-	public partial class DataGridDemo : Page
+    /// <summary>
+    /// Interaction logic for DataGridDemo.xaml
+    /// </summary>
+    public partial class DataGridDemo : Page
 	{
 		//Binding objects
 		public People _people; 
@@ -116,8 +104,14 @@ namespace WpfStartup.Pages
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			//And a one liner to save the current person to the database.
-			Helpers.Database_old.GetCommand("Person_Set", currentPerson.Parameters);
+            //And a one liner to save the current person to the database.
+            //OLD: Helpers.Database_old.GetCommand("Person_Set", currentPerson.Parameters);
+
+            //Awesome
+            //BTW, could also do
+            //currentPerson.UpdateDatabase();
+
+            Person.Set(currentPerson);
 		}
 	}
 }
