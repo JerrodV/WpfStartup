@@ -7,7 +7,7 @@
       d:DesignHeight="189" d:DesignWidth="300"
 	Title="Welcome_Modal">
 
-    <Grid>
+    <Grid x:Name="grdMain">
         <Label Content="Welcome" HorizontalAlignment="Center" Margin="83,68,84,79" VerticalAlignment="Center" Height="42" Width="133" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22"/>
 
     </Grid>
